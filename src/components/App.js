@@ -220,7 +220,7 @@ const App = () => {
       .then(() => {
         setIsRegistered(true);
         setIsInfoTooltip(true);
-        history.push("/");
+        history.push('/sign-in');
       })
       .catch((error) => {
         setIsRegistered(false);
@@ -238,7 +238,7 @@ const App = () => {
         setEmail({ email: data.email });
         setIsAuthorized(true);
         localStorage.setItem("jwt", res.token);
-        history.push("./main");
+        history.push("/main");
       })
       .catch((error) => console.log(error))
       .finally(() => setIsLoading(false));
@@ -246,7 +246,7 @@ const App = () => {
 
   const signOut = () => {
     localStorage.removeItem("jwt");
-    history.push("/login");
+    history.push("/sign-in");
   };
 
   return (
