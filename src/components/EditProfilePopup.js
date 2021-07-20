@@ -49,7 +49,7 @@ const EditProfilePopup = (props) => {
       onSubmit={handleSubmit}
       name="profile"
       title="Редактировать профиль"
-      disabled={(validationErrors.name || validationErrors.about) || (name === currentUser.name || about === currentUser.about)}
+      disabled={(validationErrors.name || validationErrors.about) || (name === currentUser.name && about === currentUser.about)}
       btn={props.isLoading ? 'Сохранение...' : 'Сохранить'}
     >
       <label className="popup__label">
