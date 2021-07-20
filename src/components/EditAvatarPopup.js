@@ -1,61 +1,66 @@
-import { useRef, useState, useEffect } from 'react';
-import PopupWithForm from './PopupWithForm';
-
-///Подскажите, пожалуйста, как тут надо сделать валидацию. Огромное спасибо!!!
+import { useState, useEffect, useContext } from "react";
+import PopupWithForm from "./PopupWithForm";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 const EditAvatarPopup = (props) => {
-    const avatarRef = useRef(''); // записываем объект, возвращаемый хуком, в переменную
-    const [validationErrors, setValidationErrors] = useState('');//стейт валидации инпутов
-    const [value, setValue] = useState(''); //стейт для значения инпута
+  const [link, setLink] = useState(""); // записываем объект, возвращаемый хуком, в переменную
+  const [validationErrors, setValidationErrors] = useState({ link: "" }); //стейт валидации инпутов
+  const currentUser = useContext(CurrentUserContext); // Подписка на контекст
 
-    function handleSubmit(e) {
-        e.preventDefault();
-      
-        props.onUpdateAvatar(//Передаём значения во внешний обработчик для измения аватара
-          avatarRef.current.value
-        );
+  function handleChangeLink(e) {
+    const { value } = e.target;
+    let error = validationErrors;
+    setLink(value);
+    const regex = /^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/gm;
+
+    !regex.test(value)
+      ? (error.link = "Введите URL.")
+      : (error.link = "" && setValidationErrors(error));
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    props.onUpdateAvatar(
+      //Передаём значения во внешний обработчик для измения аватара
+      link
+    );
+  }
+
+  useEffect(() => {
+    if (props.isOpen) {
+      setLink(currentUser.link);
+      setValidationErrors({ link: "" });
     }
+  }, [currentUser, props.isOpen]);
 
-    function handleChange(e) {
-        const input = e.target;
-        const {value, validity} = input;
-        let error = validationErrors;
-        setValue(value);
-
-        validity.typeMismatch ? error = 'Введите URL.' : error = '' && setValidationErrors(error);
-    }
-
-    useEffect(() => {
-        setValue('');
-        setValidationErrors('');
-    }, [props.isOpen]);
-
-    return (
-        <PopupWithForm
-            isOpen={props.isOpen}
-            onClose={props.onClose}
-            onSubmit={handleSubmit}
-            name="avatar"
-            title="Обновить аватар"
-            disabled={validationErrors || !avatarRef.current.value }
-            btn={props.isLoading ? 'Сохранение...' : 'Сохранить'}
+  return (
+    <PopupWithForm
+      isOpen={props.isOpen}
+      onClose={props.onClose}
+      onSubmit={handleSubmit}
+      name="avatar"
+      title="Обновить аватар"
+      disabled={validationErrors.link || link === currentUser.link}
+      btn={props.isLoading ? "Сохранение..." : "Сохранить"}
+    >
+      <label className="popup__label">
+        <input
+          value={link || ""}
+          type="url"
+          name="avatar"
+          className="popup__input"
+          placeholder="Ссылка на фотографию"
+          required
+          onChange={handleChangeLink}
+        />
+        <span
+          className={`${validationErrors.link ? "popup__input-error" : null}`}
         >
-            <label className="popup__label">
-                <input
-                    ref={avatarRef}
-                    value={value}
-                    type="url"
-                    name="avatar"
-                    className="popup__input"
-                    placeholder="Ссылка на фотографию"
-                    onChange={handleChange}
-                    pattern= "/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i"
-                    required
-                />
-                <span className={`${validationErrors ? "popup__input-error" : null}`}>{validationErrors}</span>
-            </label>
-        </PopupWithForm>
-    )
-}
+          {validationErrors.link}
+        </span>
+      </label>
+    </PopupWithForm>
+  );
+};
 
 export default EditAvatarPopup;
