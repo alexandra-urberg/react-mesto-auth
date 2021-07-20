@@ -35,9 +35,11 @@ const EditProfilePopup = (props) => {
   }
 
   useEffect(() => {// После загрузки текущего пользователя из API его данные будут использованы в управляемых компонентах.
-    setName(currentUser.name);
-    setAbout(currentUser.about); 
-    setValidationErrors({name: '', about: ''});//и проверяться на валидность
+    if(props.isOpen) {
+      setName(currentUser.name);
+      setAbout(currentUser.about); 
+      setValidationErrors({name: '', about: ''});//и проверяться на валидность
+    }
   }, [currentUser, props.isOpen]);
 
   return (
@@ -47,7 +49,7 @@ const EditProfilePopup = (props) => {
       onSubmit={handleSubmit}
       name="profile"
       title="Редактировать профиль"
-      disabled={validationErrors.name || validationErrors.about}
+      disabled={(validationErrors.name || validationErrors.about) || (name === currentUser.name || about === currentUser.about)}
       btn={props.isLoading ? 'Сохранение...' : 'Сохранить'}
     >
       <label className="popup__label">
@@ -59,7 +61,6 @@ const EditProfilePopup = (props) => {
           required
           value={name || ""}
           onChange={handleChangeTitle}
-          onFocus={handleChangeTitle}
         />
         <span className={`${validationErrors.name ? "popup__input-error" : null}`}>{validationErrors.name}</span>
       </label>
@@ -72,7 +73,6 @@ const EditProfilePopup = (props) => {
           required
           value={about || ""}
           onChange={handleChangeabout}
-          onFocus={handleChangeabout}
         />
         <span className={`${validationErrors.about ? "popup__input-error" : null}`}>{validationErrors.about}</span>
       </label>
