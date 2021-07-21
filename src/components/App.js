@@ -253,7 +253,7 @@ const App = () => {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <>
-          <Header email={email.email} onSignOut={signOut} />
+          <Header email={email.email} onSignOut={signOut} loggedIn={isAuthorized}/>
           <Switch>
             <ProtectedRoute
               path="/main"
@@ -277,7 +277,7 @@ const App = () => {
             <Route path="/sign-in">
               <Login onAuthorization={handleAuthorization} />
             </Route>
-            <Route exact path="/">
+            <Route path="/">
               {isAuthorized ? (
                 <Redirect to="/main" />
               ) : (

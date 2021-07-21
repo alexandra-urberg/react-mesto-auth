@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Link, Switch, Route } from 'react-router-dom';
+import { Link, Switch, Route, Redirect } from 'react-router-dom';
 import headerLogo from './../images/logo.svg';
 
-const Header = ({ email, onSignOut }) => {
+const Header = ({ email, onSignOut, loggedIn }) => {
     const [menuSandwich, setMenuSandwich] = useState(false);
 
     function onOpenMenu() {
