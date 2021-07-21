@@ -47,6 +47,13 @@ const Header = ({ email, onSignOut }) => {
                         <Link to="/sign-up" className="header__link">Регистрация</Link>
                     </div>
                 </Route>
+                <Route path="/">
+                    {loggedIn ? (
+                       <Redirect to="/main" />
+                    ) : (
+                       <Redirect to="/sign-in" />
+                    )}
+                </Route>
             </Switch>
         </header>
     )         
