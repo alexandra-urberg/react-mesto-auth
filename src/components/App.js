@@ -55,8 +55,8 @@ const App = () => {
       auth
         .checkToken(jwt)
         .then((res) => {
-          if (res) {
-            setEmail({ email: res.email });
+          if(res) {
+            setEmail({ email: res.data.email });
             setIsAuthorized(true);
           }
         })
