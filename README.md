@@ -1,11 +1,18 @@
 
-React-Mesto-Auth React(sprint 12)
+# React-Mesto-Auth React(sprint 12)
+
 This is an application written in React
 
 **GH-pages: https://alexandra-stepanova.github.io/react-mesto-auth/**
+
 **Figma Layout example: https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1**
 
+<code><img height="500" src="https://github.com/alexandra-stepanova/react-mesto-auth/blob/main/public/mesto.gif"></code>
+
+##
+
 This is an application written in React. The project is a service like instagram, where users can add an image, add or delete likes to the other users images, change/add user’s avatar and information. 
+
 The project includes: images, pop-up forms that save a changeable name and user’s activity, as well as an avatar, registration and authorisation. The input data (like image, description, user’s information) is validated.
 
 The following stack was used during development of the project:
@@ -17,6 +24,7 @@ The following stack was used during development of the project:
 6. Mobile adaptive website;
 
 **Startup commands**
+
  To install dependencies
 ```sh
 npm i
