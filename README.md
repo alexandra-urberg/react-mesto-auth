@@ -1,22 +1,37 @@
 
-# mesto-react
-24 поток
+React-Mesto-Auth React(sprint 12)
+This is an application written in React
 
-Выполнила: Степанова А.А.
+**GH-pages: https://alexandra-stepanova.github.io/react-mesto-auth/**
+**Figma Layout example: https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1**
 
-### Обзор
-**Figma**
+This is an application written in React. The project is a service like instagram, where users can add an image, add or delete likes to the other users images, change/add user’s avatar and information. 
+The project includes: images, pop-up forms that save a changeable name and user’s activity, as well as an avatar, registration and authorisation. The input data (like image, description, user’s information) is validated.
 
-* [Ссылка на выполненый проект](https://alexandra-stepanova.github.io/react-mesto-auth/)
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+The following stack was used during development of the project:
+1. HTML;
+2. CSS;
+3. React(JSX): semantics and validity;;
+4. Git, Flex;
+5. BEM;
+6. Mobile adaptive website;
 
-Данный проект разрабатывался как для большого, так и для малого экрана. Выполнен по БЭМ. Сделана доступность для людей с ограниченными возможностями. Проект отображается в Safari, Firefox, Google Chrome или Yandex Browser. В проекте присутствуют: изображения, всплывающая форма, которая сохраняет изменные Имя и вид деятельности на странице. В проекте пользователи могу авторизоваться. Так же можно добавить/удалить свои фотографии и поменять фотографию пользователя. Весь код CSS находится в Nested файловой структуре по БЭМ.
+**Startup commands**
+ To install dependencies
+```sh
+npm i
+```
 
-Основные технологии используемые в данном проекте:
+To start the server http://localhost:3000/
+```sh
+npm start
+```
 
-1. HTML, CSS, JS(сделано все на Реакте): семантика и валидность React, HTML и CSS разметки
-2. Git, Flex;
-3. БЭМ;
-4. Nested файловая структура по БЭМ;
-5. Адаптаця под размер устройств от 320px;
-6. ООП;
+To build the project
+```sh
+npm run build
+```
+
+Stream 24 
+
+Prepared by Alexandra Stepanova 
